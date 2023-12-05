@@ -1,0 +1,222 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Tritype</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.tritypejunittest</a>
+</div>
+
+<h1>Coverage Summary for Class: Tritype (com.example.tritypejunittest)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Tritype</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    57.4%
+  </span>
+  <span class="absValue">
+    (27/47)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.tritypejunittest;
+&nbsp;
+&nbsp;import java.io.*;
+&nbsp;
+<b class="fc">&nbsp;class Tritype</b>
+&nbsp;{
+<b class="fc">&nbsp;    private static String[] triTypes = { &quot;&quot;, // Ignore 0.</b>
+&nbsp;            &quot;scalene&quot;, &quot;isosceles&quot;, &quot;equilateral&quot;,
+&nbsp;            &quot;not a valid triangle&quot;};
+<b class="fc">&nbsp;    private static String instructions = &quot;This is the ancient &quot; +</b>
+&nbsp;            &quot;TriTyp program.\nEnter three integers that represent the &quot; +
+&nbsp;            &quot;lengths of the sides of a triangle.\nThe triangle will be &quot; +
+&nbsp;            &quot;categorized as either scalene, isosceles, equilateral\n&quot; +
+&nbsp;            &quot;or invalid.\n&quot;;
+&nbsp;
+&nbsp;    public static void main (String[] argv)
+&nbsp;    {  // Driver program for trityp
+&nbsp;        int A, B, C;
+&nbsp;        int T;
+&nbsp;
+&nbsp;//   if (argv.length == 3) {
+&nbsp;//      A = Integer.parseInt(argv[0]);
+&nbsp;//      B = Integer.parseInt(argv[1]);
+&nbsp;//      C = Integer.parseInt(argv[2]);
+&nbsp;//   } else {
+<b class="nc">&nbsp;        System.out.println (instructions);</b>
+<b class="nc">&nbsp;        System.out.println (&quot;Enter side 1: &quot;);</b>
+<b class="nc">&nbsp;        A = getN();</b>
+<b class="nc">&nbsp;        System.out.println (&quot;Enter side 2: &quot;);</b>
+<b class="nc">&nbsp;        B = getN();</b>
+<b class="nc">&nbsp;        System.out.println (&quot;Enter side 3: &quot;);</b>
+<b class="nc">&nbsp;        C = getN();</b>
+<b class="nc">&nbsp;        T = Triang (A, B, C);</b>
+&nbsp;//   }
+&nbsp;
+<b class="nc">&nbsp;        System.out.println (&quot;Result is: &quot; + triTypes[T]);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // ====================================
+&nbsp;// The main triangle classification method
+&nbsp;    static int Triang (int Side1, int Side2, int Side3)
+&nbsp;    {
+&nbsp;        int triOut;
+&nbsp;
+&nbsp;        // triOut is output from the routine:
+&nbsp;        //    Triang = 1 if triangle is scalene
+&nbsp;        //    Triang = 2 if triangle is isosceles
+&nbsp;        //    Triang = 3 if triangle is equilateral
+&nbsp;        //    Triang = 4 if not a triangle
+&nbsp;
+&nbsp;        // After a quick confirmation that it&#39;s a legal
+&nbsp;        // triangle, detect any sides of equal length
+<b class="fc">&nbsp;        if (Side1 &lt;= 0 || Side2 &lt;= 0 || Side3 &lt;= 0)</b>
+&nbsp;        {
+<b class="fc">&nbsp;            triOut = 4;</b>
+<b class="fc">&nbsp;            return (triOut);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        triOut = 0;</b>
+<b class="fc">&nbsp;        if (Side1 == Side2)</b>
+<b class="fc">&nbsp;            triOut = triOut + 1;</b>
+<b class="fc">&nbsp;        if (Side1 == Side3)</b>
+<b class="fc">&nbsp;            triOut = triOut + 2;</b>
+<b class="fc">&nbsp;        if (Side2 == Side3)</b>
+<b class="fc">&nbsp;            triOut = triOut + 3;</b>
+<b class="fc">&nbsp;        if (triOut == 0)</b>
+&nbsp;        {  // Confirm it&#39;s a legal triangle before declaring
+&nbsp;            // it to be scalene
+&nbsp;
+<b class="fc">&nbsp;            if (Side1+Side2 &lt;= Side3 || Side2+Side3 &lt;= Side1 ||</b>
+&nbsp;                    Side1+Side3 &lt;= Side2)
+<b class="fc">&nbsp;                triOut = 4;</b>
+&nbsp;            else
+<b class="fc">&nbsp;                triOut = 1;</b>
+<b class="fc">&nbsp;            return (triOut);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        /* Confirm it&#39;s a legal triangle before declaring  */
+&nbsp;        /* it to be isosceles or equilateral  */
+&nbsp;
+<b class="fc">&nbsp;        if (triOut &gt; 3)</b>
+<b class="fc">&nbsp;            triOut = 3;</b>
+<b class="fc">&nbsp;        else if (triOut == 1 &amp;&amp; Side1+Side2 &gt; Side3)</b>
+<b class="fc">&nbsp;            triOut = 2;</b>
+<b class="fc">&nbsp;        else if (triOut == 2 &amp;&amp; Side1+Side3 &gt; Side2)</b>
+<b class="fc">&nbsp;            triOut = 2;</b>
+<b class="fc">&nbsp;        else if (triOut == 3 &amp;&amp; Side2+Side3 &gt; Side1)</b>
+<b class="fc">&nbsp;            triOut = 2;</b>
+&nbsp;        else
+<b class="nc">&nbsp;            triOut = 4;</b>
+<b class="fc">&nbsp;        return (triOut);</b>
+&nbsp;    } // end Triang
+&nbsp;
+&nbsp;    // ====================================
+&nbsp;// Read (or choose) an integer
+&nbsp;    private static int getN ()
+&nbsp;    {
+<b class="nc">&nbsp;        int inputInt = 1;</b>
+<b class="nc">&nbsp;        BufferedReader in = new BufferedReader (new InputStreamReader (System.in));</b>
+&nbsp;        String inStr;
+&nbsp;
+&nbsp;        try
+&nbsp;        {
+<b class="nc">&nbsp;            inStr = in.readLine ();</b>
+<b class="nc">&nbsp;            inputInt = Integer.parseInt(inStr);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (IOException e)</b>
+&nbsp;        {  // JDK requires the IOException to be caught.
+<b class="nc">&nbsp;            System.out.println (&quot;Could not read input, choosing 1.&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        catch (NumberFormatException e)</b>
+&nbsp;        {
+<b class="nc">&nbsp;            System.out.println (&quot;Entry must be a number, choosing 1.&quot;);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        return (inputInt);</b>
+&nbsp;    } // end getN
+&nbsp;
+&nbsp;} // end trityp class
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-05 17:22</div>
+</div>
+</body>
+</html>
